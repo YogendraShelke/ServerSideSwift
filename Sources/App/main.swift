@@ -1,7 +1,10 @@
 import Vapor
 import VaporPostgreSQL
 
-let drop = Droplet(preparations: [Acronym.self], providers: [VaporPostgreSQL.Provider.self])
+let drop = Droplet()
+
+try drop.addProvider(VaporPostgreSQL.Provider)
+drop.preparations += Acronym.self
 
 drop.get("version") { req in
         
